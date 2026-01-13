@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="quantum-temporal-authentication-qta">Quantum Temporal Authentication (QTA)</h1>
+<h2 id="briefing-on-quantum-temporal-authentication-qta">Briefing on Quantum Temporal Authentication (QTA)</h2>
+<h3 id="executive-summary">Executive Summary</h3>
+<p>Quantum Temporal Authentication (QTA) is an emerging security protocol that grounds identity verification in the physical principles of quantum mechanics and precise timing. Unlike traditional cryptographic methods that rely on mathematical complexity, QTA validates an entity by its ability to measure and respond to quantum signals within strictly defined, nanosecond-scale time windows. This approach fundamentally resists attacks from both classical and quantum computers.</p>
+<p>The security of QTA is derived from two core concepts: <strong>Temporal Binding</strong>, where any interception or manipulation of a quantum signal introduces detectable timing delays, and the <strong>Quantum No-Cloning Theorem</strong>, which makes it physically impossible for an attacker to duplicate a quantum state for a replay attack without disturbing it.</p>
+<p>This document outlines a comprehensive framework for QTA, detailing its protocol specification, operational flow, and security advantages. Key applications include high-assurance identity verification for critical infrastructure, satellite-to-ground communications, and augmenting quantum-resistant Public Key Infrastructure (PKI). Furthermore, a detailed risk and threat model is presented, alongside a practical plan for operational monitoring using the Zeek network analysis framework to integrate QTA events into Security Information and Event Management (SIEM) and Cybersecurity Bill of Materials (CBOM) systems.</p>
+<h2 id="qta-overview-video">QTA Overview Video</h2>
+<p><a href="QTA-Quantum_Temporal_Authentication.mp4">📹 Watch QTA Overview Video</a></p>
+<p><em>Note: Click the link above to view the simulation demonstration video (generated using NoteBookLLM)</em></p>
+<h2 id="comparative-analysis-qta-vs-qkd-and-classical-methods">Comparative Analysis: QTA vs. QKD and Classical Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>QTA (Quantum Temporal Authentication)</th>
+<th>QKD (Quantum Key Distribution)</th>
+<th>Classical TOTP / FIDO2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary Purpose</td>
+<td>Identity/authentication bound to time &amp; quantum state</td>
+<td>Shared secret/key distribution</td>
+<td>Authentication (knowledge/possession/biometrics)</td>
+</tr>
+<tr>
+<td>Physical Requirement</td>
+<td>Quantum transmitter &amp; precise ToA measurement</td>
+<td>Quantum channel with key distillation</td>
+<td>Classical channel, TOTP server or FIDO device</td>
+</tr>
+<tr>
+<td>Temporal Sensitivity</td>
+<td>Critical (Δt defines security)</td>
+<td>Important (but not core to key secrecy)</td>
+<td>Low (NTP for time sync)</td>
+</tr>
+<tr>
+<td>Resistance to Quantum Computers</td>
+<td>Physical — high resistance</td>
+<td>Physical — high resistance</td>
+<td>Depends on underlying algorithm (PQC needed)</td>
+</tr>
+<tr>
+<td>Replay Protection</td>
+<td>Strong — nonce + timing makes replay infeasible</td>
+<td>Strong — decoy states &amp; privacy amplification</td>
+<td>TOTP limited time window; FIDO2 uses counters/challenge</td>
+</tr>
+<tr>
+<td>Man-in-the-Middle Risk</td>
+<td>Low if Δt &amp; quantum stats checked</td>
+<td>Low if QBER monitored</td>
+<td>Higher unless TLS + PKI/PQC used</td>
+</tr>
+<tr>
+<td>Infrastructure Cost</td>
+<td>Moderate–high (quantum optics + sync)</td>
+<td>High (full QKD stack + key management)</td>
+<td>Low (software tokens, hardware keys)</td>
+</tr>
+<tr>
+<td>Deployability</td>
+<td>Good for high-value links</td>
+<td>Mature for niche fiber/satellite links</td>
+<td>Universal, easy</td>
+</tr>
+<tr>
+<td>Time to Compromise</td>
+<td>Immediate detection possible</td>
+<td>Immediate detection often possible</td>
+<td>Depends on algorithm/key strength</td>
+</tr>
+<tr>
+<td>Best Use Case</td>
+<td>High-assurance auth where timing matters</td>
+<td>Long-term secure key distribution</td>
+<td>General web / consumer authentication</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-foundations-of-quantum-temporal-authentication-qta">The Foundations of Quantum Temporal Authentication (QTA)</h2>
+<h3 id="definition-and-core-principles">Definition and Core Principles</h3>
+<p>QTA is a security protocol where a user or device proves its identity by demonstrating possession of a time-dependent quantum property. Authentication is successful only when an expected quantum state is measured and verified within a precise time window, carrying the correct quantum correlations. The protocol integrates quantum states (such as single photons or entangled pairs), strict time-of-arrival constraints, and a classical side-channel for verification.</p>
+<p>Its efficacy rests on three foundational ideas:</p>
+<ul>
+<li>
+<p><strong>Temporal Binding</strong>: Authentication is only considered valid if the quantum signal arrives within a nanosecond-scale temporal slot. This leverages the short-lived nature of quantum coherence and the fact that any attempt by an adversary to intercept, measure, and resend a signal will inevitably introduce a detectable delay or statistical noise.</p>
+</li>
+<li>
+<p><strong>Quantum No-Cloning</strong>: The quantum no-cloning theorem guarantees that an unknown quantum state cannot be perfectly duplicated. This physical limitation prevents attackers from creating copies of quantum states for replay or impersonation attacks. Any attempt to intercept the state inherently disturbs its properties (e.g., polarization, phase), making the attack detectable.</p>
+</li>
+<li>
+<p><strong>Time-Correlated Quantum Challenges</strong>: A server issues &quot;Q-challenges&quot; encoded in qubits or weak coherent pulses at specific times. The client must return a valid response within a strict temporal budget, proving its ability to receive and measure the states in real-time. Any deviation beyond the allowed time window (Δt) is a criterion for rejection.</p>
+</li>
+</ul>
+<h3 id="security-advantages">Security Advantages</h3>
+<p>QTA offers inherent resistance to a range of sophisticated cyber threats by shifting the security basis from computational difficulty to physical laws.</p>
+<table>
+<thead>
+<tr>
+<th>Threat</th>
+<th>Why QTA Resists</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Replay Attacks</td>
+<td>Rendered infeasible by the combination of strict timing constraints and the impossibility of cloning quantum states.</td>
+</tr>
+<tr>
+<td>Man-in-the-Middle (MITM)</td>
+<td>Any interception fundamentally alters the quantum state and its arrival time, which are both checked during verification.</td>
+</tr>
+<tr>
+<td>Quantum Computer Brute-Force</td>
+<td>Authentication relies on the timely arrival of physical signals, not on solving a mathematical problem vulnerable to quantum algorithms.</td>
+</tr>
+<tr>
+<td>Key Leakage</td>
+<td>Q-challenges are ephemeral, used for a single authentication event, and never reused.</td>
+</tr>
+<tr>
+<td>Side-Channel Timing Bypass</td>
+<td>The challenge schedule is fixed but incorporates quantum randomness, making it difficult to predict or bypass.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="key-use-cases">Key Use Cases</h3>
+<p>The unique properties of QTA make it suitable for high-assurance security applications, including:</p>
+<ul>
+<li>Zero-trust identity verification in quantum-ready networks.</li>
+<li>Satellite-to-ground station authentication, where timing advantages are significant.</li>
+<li>Access control for critical infrastructure (energy grids, telecommunications, defense systems).</li>
+<li>High-assurance authentication for Internet of Things (IoT) devices using quantum random optical components.</li>
+<li>Augmentation for quantum-resistant Public Key Infrastructure (PKI).</li>
+</ul>
+<h2 id="qta-protocol-specification">QTA Protocol Specification</h2>
+<h3 id="actors-and-assumptions">Actors and Assumptions</h3>
+<p>The protocol involves three primary actors and operates on a set of core assumptions:</p>
+<p><strong>Actors:</strong></p>
+<ul>
+<li><strong>Server (S)</strong>: Issues quantum challenges, timestamps events, and verifies client responses.</li>
+<li><strong>Client (C)</strong>: Receives quantum states, performs measurements, and replies on a classical channel.</li>
+<li><strong>Clock Sync Authority</strong>: An optional entity or process (e.g., GPS, PTP) that ensures sub-nanosecond time alignment between the Server and Client.</li>
+</ul>
+<p><strong>Assumptions and Primitives:</strong></p>
+<ul>
+<li>A quantum source, such as weak-coherent pulses (WCP) or a true single-photon source.</li>
+<li>Time-of-arrival (ToA) measurement resolution in the picosecond range (practically 10–100 ps).</li>
+<li>An authenticated classical channel (e.g., TLS) for negotiating parameters.</li>
+<li>A defined Quantum Bit Error Rate (QBER) threshold, typically ≤ 3–6%.</li>
+<li>A strict timing window (Δt), such as ±50 ps for short fiber links or ±1–10 ns for satellite paths.</li>
+</ul>
+<h3 id="high-level-message-flow">High-Level Message Flow</h3>
+<p>A typical QTA session follows a structured four-stage process:</p>
+<ol>
+<li>
+<p><strong>Setup / Parameter Exchange</strong>: The Server and Client use the authenticated classical channel to exchange session parameters, including the epoch ID, timing window (Δt), frame parameters (e.g., pulses per frame), a public 128-bit nonce (N_s), and the maximum allowed QBER.</p>
+</li>
+<li>
+<p><strong>Quantum Challenge (Q-challenge)</strong>: The Server emits a frame of quantum states (q_i) at precisely timed intervals (t_i). Each state encodes a randomly chosen basis and bit value, which are not revealed over the classical channel.</p>
+</li>
+<li>
+<p><strong>Client Measurement &amp; Immediate Response</strong>: The Client measures each incoming quantum state (q_i) within the approved timing window. It then composes a classical response message containing the measurement outcomes, the measured time-of-arrival for each detection, and an authenticity tag (e.g., HMAC). This response must be sent back before a final frame deadline.</p>
+</li>
+<li>
+<p><strong>Server Verification</strong>: The Server verifies the authenticity of the response and checks it for correctness. It compares the client's measurement outcomes with the expected values, confirms that detections fell within the |ToA_i − t_i| ≤ Δt window, and calculates the QBER. If all metrics are within predefined thresholds, authentication is successful.</p>
+</li>
+</ol>
+<pre><code class="language-mermaid"><div class="mermaid">sequenceDiagram
+    autonumber
+    participant S as Server (Alice)
+    participant QC as Quantum Channel
+    participant C as Client (Bob)
+    participant CC as Classical Channel
+
+    Note over S,C: Phase 1: Setup
+    S->>CC: Session params {epoch, Δt, N_s, frame_params}
+    CC->>C: Parameters delivered
+    C->>CC: ACK {client_id, ready}
+    CC->>S: ACK received
+
+    Note over S,C: Phase 2: Quantum Challenge
+    loop For each qubit i in frame
+        S->>S: Generate bit b_i, basis B_i
+        S->>QC: Emit |ψ_i⟩ at t_i
+        QC->>C: Quantum state arrives (if not lost)
+        C->>C: Measure in random basis B'_i
+    end
+
+    Note over S,C: Phase 3: Client Response
+    C->>C: Compile {measurements, ToA_list, HMAC}
+    C->>CC: Response sent
+    CC->>S: Response received
+
+    Note over S,C: Phase 4: Server Verification
+    S->>S: Verify HMAC, sift bases, calculate QBER, check timing
+    S->>S: Decision: ACCEPT or REJECT
+
+    alt ACCEPT
+        S->>C: Authentication SUCCESS
+    else REJECT
+        S->>C: Authentication FAILED
+    end
+</div></code></pre>
+<h3 id="protocol-parameters-and-variants">Protocol Parameters and Variants</h3>
+<p>The protocol's performance and security can be tuned using various parameters.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Example Baseline</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frame Duration</td>
+<td>1 ms</td>
+</tr>
+<tr>
+<td>Pulses per Frame</td>
+<td>1024</td>
+</tr>
+<tr>
+<td>Mean Photon Number (μ)</td>
+<td>0.1 (if using WCP)</td>
+</tr>
+<tr>
+<td>Basis Set</td>
+<td>{Z, X} or Polarization {H,V,D,A}</td>
+</tr>
+<tr>
+<td>Authentication Score</td>
+<td>≥ 0.95 (fraction of correct outcomes in Δt)</td>
+</tr>
+<tr>
+<td>Allowed Channel Loss</td>
+<td>Up to 25–30 dB</td>
+</tr>
+<tr>
+<td>Timing Sync Method</td>
+<td>GPS / WhiteRabbit / PTP</td>
+</tr>
+<tr>
+<td>Replay Nonce Lifetime</td>
+<td>Single Frame (non-reused)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Protocol Variants:</strong></p>
+<ul>
+<li><strong>Entanglement-based QTA</strong>: The Server and Client share entangled pairs. The Client measures its half at specified times and returns results for correlation checks by the Server.</li>
+<li><strong>Challenge-Response with Delayed Basis Reveal</strong>: The Server withholds the basis information until after the Client's response arrives, reducing an attacker's advantage.</li>
+<li><strong>Hybrid Classical-Quantum</strong>: The quantum channel is used for short burst authentication to bootstrap a longer session protected by classical Post-Quantum Cryptography (PQC).</li>
+</ul>
+<h2 id="risk-threat-and-mitigation-model">Risk, Threat, and Mitigation Model</h2>
+<h3 id="assets-and-attack-surfaces">Assets and Attack Surfaces</h3>
+<p>A comprehensive threat model for QTA must consider the assets being protected and the surfaces vulnerable to attack.</p>
+<p><strong>Protected Assets:</strong></p>
+<ul>
+<li>The authentication decision (accept/reject).</li>
+<li>Session keys derived from a successful authentication.</li>
+<li>Clock synchronization data.</li>
+<li>Device identity metadata.</li>
+</ul>
+<p><strong>Attack Surfaces:</strong></p>
+<ul>
+<li><strong>Quantum Channel</strong>: Intercept-resend (MITM), photon-number splitting, loss injection, and delay attacks.</li>
+<li><strong>Classical Channel</strong>: Replay of classical responses, tampering with parameter exchange, compromise of authentication keys (e.g., HMAC/TLS).</li>
+<li><strong>Device Level</strong>: Compromised detectors (blinding), side-channel leakage, fault injection, and supply-chain vulnerabilities.</li>
+</ul>
+<h3 id="threat-analysis-and-pqc-integration">Threat Analysis and PQC Integration</h3>
+<p>The primary goal of an attacker is to spoof a client's identity. This can be achieved by either (A) forging the classical response and its timing or (B) intercepting quantum states without detectable disturbance.</p>
+<p>Vector (A) is mitigated by using PQC-signed parameter exchanges, short nonce lifetimes, and hardware security modules (HSMs).</p>
+<p>Vector (B) is prevented by the fundamental principles of quantum no-cloning, strict Δt checks, and decoy-state methods to detect photon-number splitting.</p>
+<p><strong>Post-Quantum Cryptography (PQC) Integration</strong>: While QTA's core security is physical, it does not eliminate the need for classical cryptography. The classical channel used for parameter negotiation must be protected by PQC algorithms (e.g., CRYSTALS-DILITHIUM/Kyber) to ensure long-term security against quantum adversaries. QTA reduces reliance on algorithmic secrecy for the authentication itself but requires PQC to secure the surrounding protocol infrastructure.</p>
+<h3 id="controls-and-mitigations">Controls and Mitigations</h3>
+<p>A multi-layered defense strategy is essential for a robust QTA implementation.</p>
+<ul>
+<li><strong>Temporal Controls</strong>: Strict Δt windows, diversified ToA checks, and jitter randomness in timing slots.</li>
+<li><strong>Quantum Controls</strong>: Decoy-state methods, entanglement tests, and randomness tests on photon statistics.</li>
+<li><strong>Classical Controls</strong>: PQC-signed parameter exchanges, FIPS-like key protection, and short nonce lifetimes.</li>
+<li><strong>Device Hardening</strong>: Detector watchdogs, tamper detection, secure boot, and supply-chain attestations via a CBOM.</li>
+<li><strong>Monitoring</strong>: Continuous collection of ToA histograms, QBER trends, and photon counts, integrated into a SIEM.</li>
+</ul>
+<h1 id="python-implementations">Python Implementations</h1>
+<h2 id="frameworks-comparison">Frameworks Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>NumPy</th>
+<th>SimPy</th>
+<th>QuNetSim</th>
+<th>NetSquid</th>
+<th>Qiskit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>For QTA?</td>
+<td>✓ YES</td>
+<td>PARTIAL</td>
+<td>✓ YES</td>
+<td>✓ YES</td>
+<td>✗ NO</td>
+</tr>
+<tr>
+<td>Install</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>⚡⚡⚡⚡⚡</td>
+<td>⚡⚡⚡⚡</td>
+<td>⚡⚡⚡</td>
+<td>⚡⚡⚡</td>
+<td>⚡⚡</td>
+</tr>
+<tr>
+<td>Learning</td>
+<td>Easy</td>
+<td>Easy</td>
+<td>Medium</td>
+<td>Hard</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>Free</td>
+<td>Free</td>
+<td>Free</td>
+<td>License</td>
+<td>Free</td>
+</tr>
+<tr>
+<td>Score</td>
+<td>8/10</td>
+<td>6/10</td>
+<td>9/10</td>
+<td>9/10</td>
+<td>4/10</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-numpy-based-qta-simulator">1. NumPy-Based QTA Simulator</h3>
+<p><strong>Code:</strong> 1.qta_numpy.py<br>
+<strong>Screenshot:</strong><img src="1.qta_numpy.png" alt="NumPy QTA Simulator"><br>
+<strong>Description:</strong> Fast vectorized QTA simulation using NumPy for efficient computation, featuring real-time GUI visualization of photon arrival times, QBER analysis, and attacker interception scenarios with spacebar toggle.</p>
+<h3 id="2-simpy-based-qta-simulator">2. SimPy-Based QTA Simulator</h3>
+<p><strong>Code:</strong> 2.qta_SimPy.py<br>
+<strong>Screenshot:</strong><img src="2.qta_SimPy.png" alt="SimPy QTA Simulator"><br>
+<strong>Description:</strong> Discrete-event simulation of QTA using SimPy library, modeling quantum communication timing, fiber delays, and attacker interference with interactive keyboard controls.</p>
+<h3 id="3-quanetsim-inspired-qta-simulator">3. Quanetsim-Inspired QTA Simulator</h3>
+<p><strong>Code:</strong> 3.qta_qunetsim.py<br>
+<strong>Screenshot:</strong><img src="3.qta_qunetsim.png" alt="Quanetsim-Inspired QTA Simulator"><br>
+<strong>Description:</strong> Comprehensive QTA simulator mimicking Quanetsim, implementing detailed quantum physics including channel loss, decoy states, timing constraints, and GUI-based monitoring with live attack toggling.</p>
+<h3 id="4a-netsquid-compatible-qta-simulator-needs-registeration-at-netsquidorg">4a. NetSquid-Compatible QTA Simulator (needs registeration at: netsquid.org))</h3>
+<p><strong>Code:</strong> 4.qta_netsquid_org.py<br>
+<strong>Description:</strong> Advanced QTA simulator attempting NetSquid integration (with fallback), featuring decoy state protocols, error correction, and web-based dashboard for interactive quantum key distribution analysis.</p>
+<h3 id="4b-netsquid-compatible-qta-simulator-simulation">4b. NetSquid-Compatible QTA Simulator (Simulation)</h3>
+<p><strong>Code:</strong> 4.qta_netsquid_sim.py<br>
+<strong>Screenshot:</strong><img src="4.qta_netsquid.png" alt="NetSquid-Compatible QTA Simulator"><br>
+<strong>Description:</strong> Production-ready QTA implementation with custom quantum backend, implementing realistic channel physics, decoy states, post-processing, and interactive web interface for security metrics monitoring.</p>
+<h3 id="5-qiskit-based-qta-simulator">5. Qiskit-Based QTA Simulator</h3>
+<p><strong>Code:</strong> 5.qta_qiskit.py<br>
+<strong>Screenshot:</strong><img src="5.qta_qiskit.png" alt="Qiskit-Based QTA Simulator"><br>
+<strong>Description:</strong> Circuit-based QTA simulation using Qiskit, demonstrating quantum authentication through measurable qubits with Eve attack modeling, real-time Dash visualization, and statistical analysis.</p>
+<h2 id="operational-monitoring-and-integration-with-zeek">Operational Monitoring and Integration with Zeek</h2>
+<p>To ensure operational integrity, QTA deployments require robust monitoring to detect anomalies in real-time. The Zeek network monitoring framework can be used to parse classical control messages and generate security events.</p>
+<h3 id="log-schema-for-qtaevent">Log Schema for qta_event</h3>
+<p>A unified JSON log format, <code>qta_event</code>, can capture the essential metrics of each authentication frame for analysis in a SIEM or CBOM system.</p>
+<p>Example <code>qta_event</code> Fields:</p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"ts"</span>: <span class="hljs-string">"2025-11-16T12:34:56.789Z"</span>,
+  <span class="hljs-attr">"frame_id"</span>: <span class="hljs-string">"epoch-20251116-0001"</span>,
+  <span class="hljs-attr">"server_id"</span>: <span class="hljs-string">"S-01"</span>,
+  <span class="hljs-attr">"client_id"</span>: <span class="hljs-string">"C-42"</span>,
+  <span class="hljs-attr">"event_type"</span>: <span class="hljs-string">"frame_verification"</span>,
+  <span class="hljs-attr">"pulses_sent"</span>: <span class="hljs-number">1024</span>,
+  <span class="hljs-attr">"detections_in_window"</span>: <span class="hljs-number">982</span>,
+  <span class="hljs-attr">"qber"</span>: <span class="hljs-number">0.023</span>,
+  <span class="hljs-attr">"mean_delay_ps"</span>: <span class="hljs-number">42.7</span>,
+  <span class="hljs-attr">"auth_result"</span>: <span class="hljs-string">"ACCEPT"</span>,
+  <span class="hljs-attr">"failure_reasons"</span>: [],
+  <span class="hljs-attr">"detector_status"</span>: {
+    <span class="hljs-attr">"firmware_hash"</span>: <span class="hljs-string">"sha256:..."</span>
+  },
+  <span class="hljs-attr">"firmware_supply_chain"</span>: {
+    <span class="hljs-attr">"vendor"</span>: <span class="hljs-string">"OptiQ"</span>,
+    <span class="hljs-attr">"cbom_id"</span>: <span class="hljs-string">"CBOM-UUID"</span>
+  }
+}
+</div></code></pre>
+<h3 id="zeeks-role-in-anomaly-detection">Zeek's Role in Anomaly Detection</h3>
+<p>Zeek can be deployed on the classical management network to inspect QTA control messages. Custom scripts can parse these messages to:</p>
+<ul>
+<li>Extract <code>qta_event</code> data and log it in a structured format.</li>
+<li>Generate real-time notices for anomalies, such as a QBER exceeding a predefined threshold (e.g., &gt;5%).</li>
+<li>Implement heuristics to detect specific attacks, like detector blinding (e.g., an unnaturally high detection rate combined with very low delay and QBER).</li>
+</ul>
+<h3 id="integration-with-siem-and-cbom">Integration with SIEM and CBOM</h3>
+<p>The structured logs generated by Zeek are forwarded to a SIEM for correlation and dashboarding. This enables monitoring of key trends like QBER over time, mean delay distributions, and authentication failure rates.</p>
+<p><strong>CBOM Integration</strong>: Each quantum device's CBOM entry should contain its firmware hash. When a <code>qta_event</code> log shows a <code>firmware_hash</code> that mismatches the one in the CBOM, a high-priority alert is triggered. This can initiate an automated workflow to quarantine the device and flag a potential supply-chain compromise.</p>
+<p><strong>Alerting Thresholds:</strong></p>
+<ul>
+<li><strong>QBER &gt; 5%</strong>: Warning</li>
+<li><strong>Mean Delay increase &gt; 3σ</strong>: Warning</li>
+<li><strong>Repeated Auth Rejects (&gt; 5 in 10 mins)</strong>: Lock device</li>
+</ul>
+<h2 id="qta-simulation-parameters-summary">QTA Simulation Parameters Summary</h2>
+<h2 id="1-simulation-parameters">1. Simulation Parameters</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter</th>
+<th style="text-align:left">Default Value</th>
+<th style="text-align:left">Range</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Number of Frames</td>
+<td style="text-align:left">100-200</td>
+<td style="text-align:left">10 - 500</td>
+<td style="text-align:left">Total number of authentication frames to simulate</td>
+<td style="text-align:left">Statistical accuracy, computation time</td>
+</tr>
+<tr>
+<td style="text-align:left">Qubits per Frame</td>
+<td style="text-align:left">20-30</td>
+<td style="text-align:left">5 - 50</td>
+<td style="text-align:left">Number of qubits transmitted per authentication frame</td>
+<td style="text-align:left">Key generation rate, QBER accuracy</td>
+</tr>
+<tr>
+<td style="text-align:left">Frame Interval</td>
+<td style="text-align:left">50 ms</td>
+<td style="text-align:left">10 - 1000 ms</td>
+<td style="text-align:left">Time interval between consecutive frames</td>
+<td style="text-align:left">Real-time behavior, system load</td>
+</tr>
+<tr>
+<td style="text-align:left">Simulation Duration (est.)</td>
+<td style="text-align:left">5-10 seconds</td>
+<td style="text-align:left">Variable</td>
+<td style="text-align:left">Total time to complete simulation</td>
+<td style="text-align:left">User experience, resource usage</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="2-physical-channel-parameters">2. Physical Channel Parameters</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter</th>
+<th style="text-align:left">Default Value</th>
+<th style="text-align:left">Typical Range</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">Physical Basis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Channel Length</td>
+<td style="text-align:left">10 km</td>
+<td style="text-align:left">1 - 100 km</td>
+<td style="text-align:left">Physical distance between Alice and Bob</td>
+<td style="text-align:left">Network topology</td>
+</tr>
+<tr>
+<td style="text-align:left">Fiber Loss</td>
+<td style="text-align:left">0.2 dB/km</td>
+<td style="text-align:left">0.1 - 0.5 dB/km</td>
+<td style="text-align:left">Optical fiber attenuation coefficient</td>
+<td style="text-align:left">Beer-Lambert law, Rayleigh scattering</td>
+</tr>
+<tr>
+<td style="text-align:left">Detector Efficiency</td>
+<td style="text-align:left">0.7 (70%)</td>
+<td style="text-align:left">0.3 - 0.9</td>
+<td style="text-align:left">Probability of photon detection when present</td>
+<td style="text-align:left">Detector quantum efficiency</td>
+</tr>
+<tr>
+<td style="text-align:left">Dark Count Rate</td>
+<td style="text-align:left">1e-6</td>
+<td style="text-align:left">1e-7 - 1e-5</td>
+<td style="text-align:left">Rate of false detection events</td>
+<td style="text-align:left">Thermal noise, detector imperfections</td>
+</tr>
+<tr>
+<td style="text-align:left">Timing Jitter</td>
+<td style="text-align:left">50 ps</td>
+<td style="text-align:left">10 - 200 ps</td>
+<td style="text-align:left">Random variation in detection timing</td>
+<td style="text-align:left">Electronics timing uncertainty</td>
+</tr>
+<tr>
+<td style="text-align:left">Propagation Delay</td>
+<td style="text-align:left">~5 μs/km</td>
+<td style="text-align:left">Fixed by c</td>
+<td style="text-align:left">Speed of light propagation in fiber</td>
+<td style="text-align:left">Refractive index (~1.5 for fiber)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="3-temporal-authentication-parameters">3. Temporal Authentication Parameters</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter</th>
+<th style="text-align:left">Default Value</th>
+<th style="text-align:left">Typical Range</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">Security Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Expected Delay</td>
+<td style="text-align:left">50 ns (base)</td>
+<td style="text-align:left">10 - 1000 ns</td>
+<td style="text-align:left">Baseline expected detection time</td>
+<td style="text-align:left">Baseline for anomaly detection</td>
+</tr>
+<tr>
+<td style="text-align:left">Timing Window</td>
+<td style="text-align:left">±100 ns</td>
+<td style="text-align:left">±10 - 500 ns</td>
+<td style="text-align:left">Acceptable variation in detection timing</td>
+<td style="text-align:left">False positive/negative rate</td>
+</tr>
+<tr>
+<td style="text-align:left">Delay Measurement Precision</td>
+<td style="text-align:left">~1 ns</td>
+<td style="text-align:left">0.1 - 10 ns</td>
+<td style="text-align:left">Resolution of timing measurements</td>
+<td style="text-align:left">Attack detection sensitivity</td>
+</tr>
+<tr>
+<td style="text-align:left">Time Synchronization</td>
+<td style="text-align:left">Assumed perfect</td>
+<td style="text-align:left">±1 ps - 1 μs</td>
+<td style="text-align:left">Clock synchronization between Alice &amp; Bob</td>
+<td style="text-align:left">Critical for timing-based authentication</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="4-security-thresholds">4. Security Thresholds</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Threshold</th>
+<th style="text-align:left">Default Value</th>
+<th style="text-align:left">Critical Range</th>
+<th style="text-align:left">Meaning</th>
+<th style="text-align:left">Security Implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">QBER Threshold</td>
+<td style="text-align:left">11%</td>
+<td style="text-align:left">0-15%</td>
+<td style="text-align:left">Maximum acceptable bit error rate</td>
+<td style="text-align:left">Above 11%: Likely Eve attack or channel degradation</td>
+</tr>
+<tr>
+<td style="text-align:left">Minimum Detection Rate</td>
+<td style="text-align:left">25%</td>
+<td style="text-align:left">10-50%</td>
+<td style="text-align:left">Minimum qubits that must be detected</td>
+<td style="text-align:left">Below threshold: Insufficient data for authentication</td>
+</tr>
+<tr>
+<td style="text-align:left">Maximum Loss Rate</td>
+<td style="text-align:left">75%</td>
+<td style="text-align:left">0-90%</td>
+<td style="text-align:left">Maximum acceptable photon loss</td>
+<td style="text-align:left">Above limit: Channel too lossy for secure operation</td>
+</tr>
+<tr>
+<td style="text-align:left">Timing Violation Limit</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0-5%</td>
+<td style="text-align:left">Number of allowed timing anomalies</td>
+<td style="text-align:left">Non-zero: Possible timing attack or delay manipulation</td>
+</tr>
+<tr>
+<td style="text-align:left">Authentication Success Rate</td>
+<td style="text-align:left">&gt;80%</td>
+<td style="text-align:left">50-100%</td>
+<td style="text-align:left">Overall authentication reliability</td>
+<td style="text-align:left">Below 80%: System unreliable, possible attack</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="5-attack-parameters">5. Attack Parameters</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Attack Type</th>
+<th style="text-align:left">Eve Intercept Probability</th>
+<th style="text-align:left">Added Delay</th>
+<th style="text-align:left">QBER Impact</th>
+<th style="text-align:left">Detection Method</th>
+<th style="text-align:left">Implementation Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Intercept-Resend</td>
+<td style="text-align:left">0-100%</td>
+<td style="text-align:left">100-1000 ns</td>
+<td style="text-align:left">~25% (high)</td>
+<td style="text-align:left">QBER + Timing</td>
+<td style="text-align:left">✓ Implemented</td>
+</tr>
+<tr>
+<td style="text-align:left">Photon Number Splitting</td>
+<td style="text-align:left">Depends on intensity</td>
+<td style="text-align:left">Minimal</td>
+<td style="text-align:left">Low (&lt;5%)</td>
+<td style="text-align:left">Decoy states</td>
+<td style="text-align:left">○ Planned</td>
+</tr>
+<tr>
+<td style="text-align:left">Beam Splitting</td>
+<td style="text-align:left">0-50%</td>
+<td style="text-align:left">Minimal</td>
+<td style="text-align:left">Medium (~10%)</td>
+<td style="text-align:left">Statistical analysis</td>
+<td style="text-align:left">○ Planned</td>
+</tr>
+<tr>
+<td style="text-align:left">Timing Attack</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">Variable</td>
+<td style="text-align:left">Minimal</td>
+<td style="text-align:left">Timing analysis</td>
+<td style="text-align:left">✓ Implemented</td>
+</tr>
+<tr>
+<td style="text-align:left">Trojan Horse</td>
+<td style="text-align:left">Equipment dependent</td>
+<td style="text-align:left">Minimal</td>
+<td style="text-align:left">Low</td>
+<td style="text-align:left">Equipment inspection</td>
+<td style="text-align:left">○ Future</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="6-decoy-state-parameters">6. Decoy State Parameters</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Intensity Level</th>
+<th style="text-align:left">Mean Photon Number</th>
+<th style="text-align:left">Probability</th>
+<th style="text-align:left">Purpose</th>
+<th style="text-align:left">Expected QBER</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Signal</td>
+<td style="text-align:left">0.5 (μ)</td>
+<td style="text-align:left">50%</td>
+<td style="text-align:left">Key generation</td>
+<td style="text-align:left">Normal (~3-5%)</td>
+</tr>
+<tr>
+<td style="text-align:left">Decoy 1</td>
+<td style="text-align:left">0.3</td>
+<td style="text-align:left">30%</td>
+<td style="text-align:left">PNS attack detection</td>
+<td style="text-align:left">Similar to signal</td>
+</tr>
+<tr>
+<td style="text-align:left">Decoy 2</td>
+<td style="text-align:left">0.1</td>
+<td style="text-align:left">15%</td>
+<td style="text-align:left">PNS attack detection</td>
+<td style="text-align:left">Similar to signal</td>
+</tr>
+<tr>
+<td style="text-align:left">Vacuum</td>
+<td style="text-align:left">0.0</td>
+<td style="text-align:left">5%</td>
+<td style="text-align:left">Baseline measurement</td>
+<td style="text-align:left">Only dark counts</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="7-error-correction--privacy-amplification">7. Error Correction &amp; Privacy Amplification</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Technique</th>
+<th style="text-align:left">Efficiency</th>
+<th style="text-align:left">Communication Overhead</th>
+<th style="text-align:left">Security Impact</th>
+<th style="text-align:left">Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Error Correction (Cascade)</td>
+<td style="text-align:left">~1.15-1.22</td>
+<td style="text-align:left">High</td>
+<td style="text-align:left">Corrects natural errors</td>
+<td style="text-align:left">○ Simplified</td>
+</tr>
+<tr>
+<td style="text-align:left">Error Correction (LDPC)</td>
+<td style="text-align:left">~1.05-1.10</td>
+<td style="text-align:left">Medium</td>
+<td style="text-align:left">Corrects natural errors</td>
+<td style="text-align:left">○ Simplified</td>
+</tr>
+<tr>
+<td style="text-align:left">Privacy Amplification</td>
+<td style="text-align:left">Variable</td>
+<td style="text-align:left">Low</td>
+<td style="text-align:left">Removes Eve's information</td>
+<td style="text-align:left">✓ Estimated</td>
+</tr>
+<tr>
+<td style="text-align:left">Two-way Classical Communication</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">Required</td>
+<td style="text-align:left">Enables error reconciliation</td>
+<td style="text-align:left">✓ Simulated</td>
+</tr>
+<tr>
+<td style="text-align:left">Hash Function</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">Minimal</td>
+<td style="text-align:left">Final key compression</td>
+<td style="text-align:left">○ Planned</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="8-key-generation-metrics">8. Key Generation Metrics</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Metric</th>
+<th style="text-align:left">Formula/Method</th>
+<th style="text-align:left">Typical Value</th>
+<th style="text-align:left">Units</th>
+<th style="text-align:left">Depends On</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Raw Key Rate</td>
+<td style="text-align:left">Detection_rate × Qubits_per_frame × Frame_rate</td>
+<td style="text-align:left">5-20 bits/frame</td>
+<td style="text-align:left">bits/frame or bits/s</td>
+<td style="text-align:left">Detection rate, frame rate</td>
+</tr>
+<tr>
+<td style="text-align:left">Sifted Key Rate</td>
+<td style="text-align:left">Raw_rate × Basis_match_prob (50%)</td>
+<td style="text-align:left">2-10 bits/frame</td>
+<td style="text-align:left">bits/frame or bits/s</td>
+<td style="text-align:left">Basis matching, detection rate</td>
+</tr>
+<tr>
+<td style="text-align:left">Secure Key Rate</td>
+<td style="text-align:left">Sifted_rate × (1 - 2×H(QBER))</td>
+<td style="text-align:left">1-5 bits/frame</td>
+<td style="text-align:left">bits/frame or bits/s</td>
+<td style="text-align:left">QBER, error correction efficiency</td>
+</tr>
+<tr>
+<td style="text-align:left">Key Generation Efficiency</td>
+<td style="text-align:left">Secure_rate / Raw_rate</td>
+<td style="text-align:left">20-50%</td>
+<td style="text-align:left">Dimensionless ratio</td>
+<td style="text-align:left">All above factors</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="9-quantum-backend-options">9. Quantum Backend Options</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Backend</th>
+<th style="text-align:left">Realism</th>
+<th style="text-align:left">Speed</th>
+<th style="text-align:left">Installation</th>
+<th style="text-align:left">Best For</th>
+<th style="text-align:left">Current Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Custom (Pure Python)</td>
+<td style="text-align:left">Medium</td>
+<td style="text-align:left">Fast</td>
+<td style="text-align:left">None required</td>
+<td style="text-align:left">Quick prototyping, education</td>
+<td style="text-align:left">✓ Implemented</td>
+</tr>
+<tr>
+<td style="text-align:left">NetSquid</td>
+<td style="text-align:left">High</td>
+<td style="text-align:left">Medium</td>
+<td style="text-align:left">Complex</td>
+<td style="text-align:left">Realistic network simulation</td>
+<td style="text-align:left">○ Removed (dependency issues)</td>
+</tr>
+<tr>
+<td style="text-align:left">Qiskit</td>
+<td style="text-align:left">Medium-High</td>
+<td style="text-align:left">Slow</td>
+<td style="text-align:left">pip install qiskit</td>
+<td style="text-align:left">Gate-based simulation</td>
+<td style="text-align:left">○ Available (not default)</td>
+</tr>
+<tr>
+<td style="text-align:left">QuTiP</td>
+<td style="text-align:left">High</td>
+<td style="text-align:left">Slow</td>
+<td style="text-align:left">pip install qutip</td>
+<td style="text-align:left">Open quantum systems</td>
+<td style="text-align:left">○ Potential addition</td>
+</tr>
+<tr>
+<td style="text-align:left">Cirq</td>
+<td style="text-align:left">Medium</td>
+<td style="text-align:left">Medium</td>
+<td style="text-align:left">pip install cirq</td>
+<td style="text-align:left">Google quantum hardware</td>
+<td style="text-align:left">○ Potential addition</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="10-visualization-options">10. Visualization Options</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Visualization</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Key Information</th>
+<th style="text-align:left">Use Case</th>
+<th style="text-align:left">Interactive</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">QBER vs Time</td>
+<td style="text-align:left">Scatter + Line</td>
+<td style="text-align:left">Error rate, threshold, authentication status</td>
+<td style="text-align:left">Attack detection, channel quality</td>
+<td style="text-align:left">✓ Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">Timing Analysis</td>
+<td style="text-align:left">Dual subplot</td>
+<td style="text-align:left">Average delay, violations, anomalies</td>
+<td style="text-align:left">Timing attack detection</td>
+<td style="text-align:left">✓ Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">Detection Rate</td>
+<td style="text-align:left">Area chart</td>
+<td style="text-align:left">Photon detection efficiency</td>
+<td style="text-align:left">Channel loss analysis</td>
+<td style="text-align:left">✓ Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">Key Generation Rate</td>
+<td style="text-align:left">Cumulative line</td>
+<td style="text-align:left">Cumulative secure bits generated</td>
+<td style="text-align:left">Key generation performance</td>
+<td style="text-align:left">✓ Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">Summary Statistics</td>
+<td style="text-align:left">Cards + Table</td>
+<td style="text-align:left">Overall performance metrics</td>
+<td style="text-align:left">Overall system assessment</td>
+<td style="text-align:left">✓ Yes</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="11-authentication-decision-logic">11. Authentication Decision Logic</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Criterion</th>
+<th style="text-align:left">Condition</th>
+<th style="text-align:left">Default Threshold</th>
+<th style="text-align:left">Failure Consequence</th>
+<th style="text-align:left">Recommended Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">QBER Check</td>
+<td style="text-align:left">QBER ≤ Threshold</td>
+<td style="text-align:left">≤ 11%</td>
+<td style="text-align:left">Reject frame (high error)</td>
+<td style="text-align:left">Check channel, look for Eve</td>
+</tr>
+<tr>
+<td style="text-align:left">Timing Check</td>
+<td style="text-align:left">Timing_violations = 0</td>
+<td style="text-align:left">0 violations</td>
+<td style="text-align:left">Reject frame (timing attack)</td>
+<td style="text-align:left">Investigate timing anomalies</td>
+</tr>
+<tr>
+<td style="text-align:left">Detection Rate Check</td>
+<td style="text-align:left">Detection_rate ≥ Min_rate</td>
+<td style="text-align:left">≥ 25%</td>
+<td style="text-align:left">Reject frame (insufficient data)</td>
+<td style="text-align:left">Check detectors, channel loss</td>
+</tr>
+<tr>
+<td style="text-align:left">Statistical Consistency</td>
+<td style="text-align:left">Additional tests (optional)</td>
+<td style="text-align:left">Custom</td>
+<td style="text-align:left">Reject frame (statistical anomaly)</td>
+<td style="text-align:left">Investigate statistical patterns</td>
+</tr>
+<tr>
+<td style="text-align:left">Final Decision</td>
+<td style="text-align:left">ALL checks must pass</td>
+<td style="text-align:left">AND logic</td>
+<td style="text-align:left">Authentication FAILED</td>
+<td style="text-align:left">Abort session, alert operator</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="12-performance-metrics">12. Performance Metrics</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Metric</th>
+<th style="text-align:left">Target Value</th>
+<th style="text-align:left">Actual (Typical)</th>
+<th style="text-align:left">Measurement Method</th>
+<th style="text-align:left">Critical For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Authentication Success Rate</td>
+<td style="text-align:left">&gt;90%</td>
+<td style="text-align:left">85-95%</td>
+<td style="text-align:left">Successful authentications / Total frames</td>
+<td style="text-align:left">System reliability</td>
+</tr>
+<tr>
+<td style="text-align:left">False Positive Rate</td>
+<td style="text-align:left">&lt;5%</td>
+<td style="text-align:left">2-8%</td>
+<td style="text-align:left">False alarms / Total authentic frames</td>
+<td style="text-align:left">Usability, false alarms</td>
+</tr>
+<tr>
+<td style="text-align:left">False Negative Rate</td>
+<td style="text-align:left">&lt;1%</td>
+<td style="text-align:left">0.5-2%</td>
+<td style="text-align:left">Missed attacks / Total attack frames</td>
+<td style="text-align:left">Security</td>
+</tr>
+<tr>
+<td style="text-align:left">Attack Detection Rate</td>
+<td style="text-align:left">&gt;95%</td>
+<td style="text-align:left">90-98%</td>
+<td style="text-align:left">Detected attacks / Total attack frames</td>
+<td style="text-align:left">Security</td>
+</tr>
+<tr>
+<td style="text-align:left">Key Generation Rate</td>
+<td style="text-align:left">&gt;1 bit/frame</td>
+<td style="text-align:left">0.5-3 bits/frame</td>
+<td style="text-align:left">Average secure bits per frame</td>
+<td style="text-align:left">Practical utility</td>
+</tr>
+<tr>
+<td style="text-align:left">Simulation Speed</td>
+<td style="text-align:left">&gt;10 frames/sec</td>
+<td style="text-align:left">5-20 frames/sec</td>
+<td style="text-align:left">Frames processed per second</td>
+<td style="text-align:left">Real-time operation</td>
+</tr>
+<tr>
+<td style="text-align:left">Resource Usage</td>
+<td style="text-align:left">&lt;500 MB RAM</td>
+<td style="text-align:left">100-300 MB</td>
+<td style="text-align:left">Memory profiling</td>
+<td style="text-align:left">Scalability</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="13-configuration-presets">13. Configuration Presets</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Preset</th>
+<th style="text-align:left">Channel Length</th>
+<th style="text-align:left">Fiber Loss</th>
+<th style="text-align:right">Detector Efficiency</th>
+<th style="text-align:left">Eve Attack</th>
+<th style="text-align:right">Frames</th>
+<th style="text-align:left">Expected Success Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Laboratory (Ideal)</td>
+<td style="text-align:left">1-5 km</td>
+<td style="text-align:left">0.1 dB/km</td>
+<td style="text-align:right">0.9</td>
+<td style="text-align:left">Off</td>
+<td style="text-align:right">500</td>
+<td style="text-align:left">~98%</td>
+</tr>
+<tr>
+<td style="text-align:left">Metropolitan Network</td>
+<td style="text-align:left">10-30 km</td>
+<td style="text-align:left">0.2 dB/km</td>
+<td style="text-align:right">0.7</td>
+<td style="text-align:left">20% intercept</td>
+<td style="text-align:right">200</td>
+<td style="text-align:left">~90%</td>
+</tr>
+<tr>
+<td style="text-align:left">Long Distance</td>
+<td style="text-align:left">50-100 km</td>
+<td style="text-align:left">0.3 dB/km</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:left">10% intercept</td>
+<td style="text-align:right">100</td>
+<td style="text-align:left">~70%</td>
+</tr>
+<tr>
+<td style="text-align:left">High Security</td>
+<td style="text-align:left">10 km</td>
+<td style="text-align:left">0.2 dB/km</td>
+<td style="text-align:right">0.8</td>
+<td style="text-align:left">50% intercept</td>
+<td style="text-align:right">300</td>
+<td style="text-align:left">~50% (with attacks)</td>
+</tr>
+<tr>
+<td style="text-align:left">Fast Demo</td>
+<td style="text-align:left">5 km</td>
+<td style="text-align:left">0.15 dB/km</td>
+<td style="text-align:right">0.75</td>
+<td style="text-align:left">30% intercept</td>
+<td style="text-align:right">50</td>
+<td style="text-align:left">~95%</td>
+</tr>
+</tbody>
+</table>
+<hr>
+
+</body>
+</html>
