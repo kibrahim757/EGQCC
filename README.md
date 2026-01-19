@@ -5,8 +5,8 @@
 EgQCC Quantum Security Track is built on three main defenses (the **Quantum Security Triangle**):
 
 1. **PQC (Post-Quantum Cryptography)**: Software-based math that classical computers can run but quantum computers can't easily break
-2. **QC (Quantum Communication/Cryptography)**: Hardware-based security using physics (like photons) to send data or keys.
-3. **QRNG (Quantum Random Number Generators)**: Using quantum unpredictability to create "perfect" entropy for all encryption keys.
+2. **QC (Quantum Communication)**: Quantum Communication refers to hardware-based security mechanisms such as QKD, QSDC, and emerging quantum authentication methods.
+3. **QRNG (Quantum Random Number Generators)**: Using quantum unpredictability to create high-quality (near-ideal) entropy for all encryption keys.
 
 ![EgQCC Quantum Security Track Overview](image/README/1768119323852.png)
 
