@@ -22,7 +22,7 @@ EgQCC Quantum Security Track is built on three main defenses (the **Quantum Secu
 
 ### The Five Phases of the Track
 
-**Phase 1: Quantum Foundation & Strategy & Enterprise Migration (QRA)**
+**Phase 1: Quantum Foundations & Risk Awareness**
 
 - Understand the physics of quantum mechanics (No-Cloning, Entanglement, Uncertainty Principle)
 - Learn how quantum computers break classical cryptography (Shor's & Grover's Algorithms)
@@ -32,7 +32,7 @@ EgQCC Quantum Security Track is built on three main defenses (the **Quantum Secu
 **Phase 2: Post-Quantum Cryptography (PQC) – The Algorithmic Layer**
 
 - Master the finalized NIST 2024/2025 standards (ML-KEM, ML-DSA, SLH-DSA)
-- Learn the HQC backup standard for lattice-based algorithm resilience
+- Learn the HQC backup standard (code-based) in case lattice-based schemes are ever compromised
 - Implement hybrid encryption models to ensure backward compatibility
 - Write your first PQC-enabled applications using liboqs
 
@@ -77,14 +77,14 @@ EgQCC Quantum Security Track is built on three main defenses (the **Quantum Secu
 
 ### 1. Quantum Mechanics for Security:
 
-- **No-Cloning Theorem**: Why quantum states (photons) cannot be copied, making QC physically unhackable.
+- **No-Cloning Theorem**: Why quantum states (photons) cannot be copied, providing theoretical security guaranteed by the laws of quantum physics under ideal implementations
 - **Entanglement & Bell's Theorem**: Understanding the "spooky action" that powers E91 (Entanglement QKD).
 - **Heisenberg's Uncertainty Principle**: How the act of measuring a signal changes it (Eavesdropping Detection).
 
 ### 2. The Classical Failure (The Math):
 
 - **Shor's Algorithm**: Deep dive into how it breaks RSA/ECC via Period Finding.
-- **Grover's Algorithm**: Why AES-128 is "halved" in security and why AES-256 is the minimum quantum-safe symmetric standard.
+- **Grover's Algorithm**: Why AES-128 effectively provides ~64-bit quantum security, making AES-256 the recommended minimum. in security and why AES-256 is the minimum quantum-safe symmetric standard.
 - **Mosca's Theorem** ($X+Y > Z$): Learning to calculate if your data will be exposed before you can migrate.
 
 ### 3. Introduction to Enterprise Risk:
@@ -106,6 +106,7 @@ EgQCC Quantum Security Track is built on three main defenses (the **Quantum Secu
 
 ### 2. Quantum Temporal Authentication (QTA):
 
+- **Quantum Temporal Authentication (QTA)**: is an emerging research concept inspired by quantum position verification and ultra-precise timing constraints.
 - **Temporal Binding**: Using nanosecond-scale "Time-of-Arrival" (ToA) to ensure a signal is from a physical location, preventing Man-in-the-Middle (MITM) and Replay Attacks.
 - **Verification Challenges**: Implementing time-based challenges that a quantum-cloner cannot mimic due to processing delays.
 
