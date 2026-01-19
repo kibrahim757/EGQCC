@@ -12,12 +12,13 @@ EgQCC Quantum Security Track is built on three main defenses (the **Quantum Secu
 
 ### Security Triangle Comparison
 
-| Security Dimension             | Quantum Cryptography (QC)                                                                     | Post-Quantum Cryptography (PQC)                                                                        | Quantum Random Number Generators (QRNG)                                                         |
+| Security Dimension             | Quantum Communication (QC)                                                                     | Post-Quantum Cryptography (PQC)                                                                        | Quantum Random Number Generators (QRNG)                                                         |
 | ------------------------------ | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| **Principle**            | Uses principles of quantum mechanics for security (**Quantum Communications**)          | Develops algorithms secure against quantum computer attacks                                            | Uses quantum phenomena to generate true random numbers                                          |
+| **Principle**            | Uses quantum physics principles to achieve information-theoretic security under ideal implementations          | Develops algorithms secure against quantum computer attacks                                            | Uses quantum phenomena to generate true random numbers                                          |
 | **Technology**           | Requires quantum hardware (e.g.,**QKD systems**)                                        | Can be implemented on**classical computers**                                                     | Based on quantum mechanical processes (e.g.,**photon behavior**)                          |
 | **Examples**             | Quantum Key Distribution (**QKD**) like BB84, E91, … etc.                              | Lattice-based (Kyber, Dilithium), Code-based (McEliece), Hash-based (SPHINCS+)                         | Devices generating**true randomness** from quantum states of particles                    |
 | **Example (Bank Vault)** | Super secure**one-time delivery** of the combination code (**key**) for the vault | Replacing the existing lock on the**vault** with a new, **resistant to quantum computers** | Generating**true random numbers** for the combination code (**keys**) using photons |
+| **Security Guarantee** | Information-Theoretic (ideal implementations) | Computational | Information-Theoretic |
 
 ### The Five Phases of the Track
 
