@@ -112,7 +112,7 @@ EgQCC Quantum Security Track is built on three main defenses (the **Quantum Secu
 
 ### 3. Quantum Secure Direct Communication (QSDC):
 
-- **No-Key Encryption**: Sending data directly over the quantum channel without a prior key.
+- **No prior key distribution**: Sending data directly over the quantum channel without a prior key.
 - **The Security Checking Phase**: How to verify a channel is safe before sending the bulk of the information.
 
 ---
@@ -139,7 +139,7 @@ EgQCC Quantum Security Track is built on three main defenses (the **Quantum Secu
 
 ## Phase 4: QRNG (Quantum Random Number Generators)
 
-**Focus**: Perfect entropy as the root of all security.
+**Focus**: High-quality quantum entropy as the root of cryptographic security.
 
 ### 1. Quantum Entropy Sources:
 
