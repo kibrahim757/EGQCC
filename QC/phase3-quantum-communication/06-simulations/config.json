@@ -1,0 +1,92 @@
+{
+  "simulation": {
+    "name": "Phase 3 Quantum Communication Simulations",
+    "version": "1.0.0",
+    "description": "Comprehensive quantum key distribution protocol simulations",
+    "created": "2026-01-19"
+  },
+  "protocols": {
+    "bb84": {
+      "name": "Bennett-Brassard 1984",
+      "type": "Quantum Key Distribution",
+      "description": "Foundational QKD protocol using random basis selection",
+      "security_model": "Information-theoretic",
+      "key_bits_per_qubit": 0.5,
+      "default_parameters": {
+        "n_qubits": 1000,
+        "depolarize_rate": 0.01,
+        "security_threshold": 0.11
+      }
+    }
+  },
+  "quantum_channels": {
+    "ideal": {
+      "name": "Ideal Quantum Channel",
+      "loss_rate": 0.0,
+      "error_rate": 0.0,
+      "description": "Theoretical perfect transmission"
+    },
+    "realistic_short": {
+      "name": "Realistic Short Range",
+      "loss_rate": 0.01,
+      "error_rate": 0.005,
+      "distance_km": 10,
+      "description": "Short-distance fiber optic link"
+    },
+    "realistic_medium": {
+      "name": "Realistic Medium Range",
+      "loss_rate": 0.05,
+      "error_rate": 0.01,
+      "distance_km": 50,
+      "description": "Medium-distance metropolitan network"
+    },
+    "realistic_long": {
+      "name": "Realistic Long Range",
+      "loss_rate": 0.20,
+      "error_rate": 0.02,
+      "distance_km": 200,
+      "description": "Long-distance intercity link"
+    }
+  },
+  "simulation_parameters": {
+    "default_trials": 10,
+    "default_qubits_per_trial": 1000,
+    "noise_rates": [0.0, 0.01, 0.02, 0.05, 0.10],
+    "loss_rates": [0.0, 0.01, 0.05, 0.10, 0.20],
+    "error_rates": [0.0, 0.005, 0.01, 0.02, 0.05]
+  },
+  "analysis": {
+    "metrics": [
+      "sift_efficiency",
+      "quantum_bit_error_rate",
+      "eavesdropper_information",
+      "secret_key_rate",
+      "protocol_security_status"
+    ],
+    "visualization": {
+      "plot_types": ["line", "scatter", "histogram", "heatmap"],
+      "output_format": "png",
+      "dpi": 300
+    }
+  },
+  "output": {
+    "results_dir": "results",
+    "logs_dir": "logs",
+    "figures_dir": "figures",
+    "timestamp_format": "%Y-%m-%d_%H-%M-%S"
+  },
+  "security": {
+    "qber_threshold_bb84": 0.11,
+    "min_final_key_length": 128,
+    "error_correction_overhead": 1.5,
+    "privacy_amplification_rounds": 5
+  },
+  "network": {
+    "max_nodes": 50,
+    "supported_topologies": ["point_to_point", "linear", "mesh"],
+    "quantum_repeater": {
+      "supported": true,
+      "efficiency": 0.95
+    }
+  }
+}
