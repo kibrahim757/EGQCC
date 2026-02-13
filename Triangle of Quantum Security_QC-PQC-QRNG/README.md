@@ -74,6 +74,17 @@ sequenceDiagram
 ### 4. Quantum Key Distribution (QKD)
 The BB84 protocol for detecting eavesdroppers during key transmission.
 
+#### Circuit Implementation (BB84)
+**1. Alice's Preparation Phase:**
+![Alice Preparation](./images/alice_circuit.png)
+*Alice encodes a bit (e.g., 1) into a superposition state using a Hadamard gate.*
+
+**2. Bob's Measurement Phase:**
+![Bob Measurement](./images/bob_circuit.png)
+*Bob applies his random basis choice (e.g., Hadamard) before measurement.*
+
+#### Protocol Flow
+
 ```mermaid
 sequenceDiagram
     participant Alice as Alice (Sender)
