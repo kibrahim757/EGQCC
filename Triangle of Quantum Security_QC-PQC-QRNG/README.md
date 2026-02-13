@@ -20,11 +20,84 @@ This project demonstrates the **Triangle of Quantum Security**, a holistic appro
     *   Process flows and architecture diagrams (Mermaid)
     *   Statistical analysis plots (Matplotlib)
 
+## 🏗️ System Architecture & Workflows
+
+### 🔺 The Triangle of Quantum Security
+This unified architecture shows how QRNG, PQC, and QKD function together to provide comprehensive security.
+
+```mermaid
+flowchart TD
+    A["🔮 QRNG<br/>Quantum Random<br/>Number Generator<br/><br/>Generate truly random key"] --> B["🛡️ PQC<br/>Post-Quantum<br/>Cryptography<br/><br/>Encrypt key using<br/>lattice-based crypto"]
+    B --> C["📡 QKD<br/>Quantum Key<br/>Distribution<br/><br/>Transmit encrypted key<br/>via quantum channel"]
+    C --> D["🔐 SECURE<br/>COMMUNICATION<br/><br/>Defense in Depth<br/>Future-Proof Cryptography"]
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:3px,color:#000
+    style B fill:#e8f5e9,stroke:#1b5e20,stroke-width:3px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:3px,color:#000
+    style D fill:#ffebee,stroke:#c62828,stroke-width:3px,color:#000
+```
+
+### 🔮 1. Quantum Random Number Generator (QRNG)
+The process of generating true randomness using quantum superposition.
+
+```mermaid
+graph TD
+    A[QRNG<br/>Quantum Random<br/>Number Generator] --> D[SECURE<br/>COMMUNICATION]
+    B[PQC<br/>Post-Quantum<br/>Cryptography] --> D
+    C[QKD<br/>Quantum Key<br/>Distribution] --> D
+    A --- B
+    B --- C
+    C --- A
+    A -.-> E[True Randomness]
+    B -.-> F[Quantum-Safe]
+    C -.-> G[Secure Channel]
+    classDef qrngStyle fill:#e1f5fe,stroke:#01579b,stroke-width:3px,color:#01579b
+    classDef pqcStyle fill:#e8f5e9,stroke:#1b5e20,stroke-width:3px,color:#1b5e20
+    classDef qkdStyle fill:#fff3e0,stroke:#e65100,stroke-width:3px,color:#e65100
+    classDef secureStyle fill:#ffebee,stroke:#c62828,stroke-width:3px,color:#c62828
+    A:::qrngStyle
+    B:::pqcStyle
+    C:::qkdStyle
+    D:::secureStyle
+```
+
+### 🛡️ 2. Post-Quantum Cryptography (PQC)
+The Key Encapsulation Mechanism (KEM) used to secure keys against quantum computers.
+
+```mermaid
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Note over Alice: Generate sk, pk<br/>(from LWE problem)
+    Alice->>Bob: Send pk (public key)
+    Note over Bob: Encapsulate using pk<br/>Generate: u, v, ss
+    Bob->>Alice: Send ct (ciphertext: u, v)
+    Note over Alice: Decapsulate ct using sk<br/>Recover: ss
+    Note over Alice,Bob: Shared secret<br/>established!
+```
+
+### 📡 3. Quantum Key Distribution (QKD)
+The BB84 protocol for detecting eavesdroppers during key transmission.
+
+```mermaid
+sequenceDiagram
+    participant Alice as Alice (Sender)
+    participant Channel as Quantum Channel
+    participant Bob as Bob (Receiver)
+    Note over Alice: 1. Generate Random Bits<br/>2. Choose Random Bases
+    Alice->>Channel: 3. Send Qubits (|0>, |1>, |+>, |->)
+    Channel->>Bob: Qubits travel...
+    Note over Bob: 4. Measure in<br/>Random Bases
+    Bob-->>Alice: 5. Announce Bases (Classical Channel)
+    Alice-->>Bob: 6. Confirm Matches
+    Note over Alice,Bob: 7. Discard Mismatches (Sifting)
+    Note over Alice,Bob: 8. Check Error Rate<br/>If < Threshold -> Secure Key!
+```
+
 ## 📊 Visualizations and Analysis
 
 ### 1. Unified Architecture
 ![Triangle of Quantum Security](./images/triangle_quantum_security.png)
-**Analysis**: The "Triangle" architecture combines three layers of defense. 
+**Analysis**: The "Triangle" architecture combines three layers of defense.
 *   **QRNG** is the foundation, providing the entropy (randomness) needed for strong keys.
 *   **PQC** provides the mathematical algorithmic layer, protecting data even if intercepted and stored for future quantum decryption ("harvest now, decrypt later").
 *   **QKD** adds the physical layer security, ensuring that any attempt to eavesdrop on the key exchange is detected by the laws of quantum mechanics (No-Cloning Theorem).
