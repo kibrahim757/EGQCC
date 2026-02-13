@@ -50,7 +50,9 @@ graph TD
     D:::secureStyle
 ```
 ![QRNG Circuit](./images/qrng_circuit.png)
+
 **Circuit Logic**: The circuit utilizes 8 qubits initialized to |0⟩. A Hadamard gate (H) is applied to each, creating a superposition state (|0⟩ + |1⟩)/√2. Measurement collapses this state to a purely random bit (0 or 1).
+
 **Statistical Analysis**:
 ![QRNG Analysis](./images/qrng_analysis.png)
 The distribution of generated numbers (0-255) typically shows a uniform distribution, confirming high entropy compared to pseudo-random generators which can exhibit patterns.
@@ -68,23 +70,15 @@ sequenceDiagram
     Note over Alice: Decapsulate ct using sk<br/>Recover: ss
     Note over Alice,Bob: Shared secret<br/>established!
 ```
+
 ![PQC Security Analysis](./images/pqc_security_analysis.png)
+
 **Performance**: The Kyber-like Lattice KEM demonstrates that while key sizes are larger than traditional RSA/ECC, the encapsulation and decapsulation times remain efficient for practical use. The security relies on the "Module Learning With Errors" (M-LWE) problem, which is believed to be hard even for quantum computers.
 
 ### 4. Quantum Key Distribution (QKD)
 The BB84 protocol for detecting eavesdroppers during key transmission.
 
-#### Circuit Implementation (BB84)
-**1. Alice's Preparation Phase:**
-![Alice Preparation](./images/alice_circuit.png)
-*Alice encodes a bit (e.g., 1) into a superposition state using a Hadamard gate.*
-
-**2. Bob's Measurement Phase:**
-![Bob Measurement](./images/bob_circuit.png)
-*Bob applies his random basis choice (e.g., Hadamard) before measurement.*
-
 #### Protocol Flow
-
 ```mermaid
 sequenceDiagram
     participant Alice as Alice (Sender)
@@ -99,7 +93,17 @@ sequenceDiagram
     Note over Alice,Bob: 7. Discard Mismatches (Sifting)
     Note over Alice,Bob: 8. Check Error Rate<br/>If < Threshold -> Secure Key!
 ```
+#### Circuit Implementation (BB84)
+**1. Alice's Preparation Phase:**
+![Alice Preparation](./images/alice_circuit.png)
+*Alice encodes a bit (e.g., 1) into a superposition state using a Hadamard gate.*
+
+**2. Bob's Measurement Phase:**
+![Bob Measurement](./images/bob_circuit.png)
+*Bob applies his random basis choice (e.g., Hadamard) before measurement.*
+
 ![QKD Security](./images/qkd_security.png)
+
 **BB84 Protocol**: The visualization traces the flow of qubits between Alice and Bob.
 *   **Eavesdropping Detection**: If an eavesdropper (Eve) intercepts the qubits, the error rate in the final key rises significantly (theoretically 25% for simple attacks).
 *   **Secure Channel**: In the absence of Eve, the error rate remains near 0%, allowing Alice and Bob to distill a secure shared secret.
