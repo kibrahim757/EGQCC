@@ -7,10 +7,6 @@ This project demonstrates the **Triangle of Quantum Security**, a holistic appro
 2.  **PQC (Post-Quantum Cryptography)**: Protects data against future quantum computer attacks using mathematical complexity (Lattice-based cryptography).
 3.  **QC (Quantum Communication / QKD)**: Ensures secure key distribution through the laws of physics (BB84 protocol).
 
-## 📂 Repository Contents
-*   `triangle_of_quantum_security.ipynb`: The main interactive Jupyter Notebook containing code, simulations, and visualizations.
-*   `images/`: Directory containing generated visualizations and diagrams.
-
 ## 🚀 Features
 *   **True Randomness**: Implementation of a quantum circuit using Hadamard gates to generate unbiased random numbers.
 *   **Quantum-Safe Encryption**: Simplified demonstration of Kyber-like Key Encapsulation Mechanism (KEM) based on the Learning With Errors (LWE) problem.
@@ -20,23 +16,17 @@ This project demonstrates the **Triangle of Quantum Security**, a holistic appro
     *   Process flows and architecture diagrams (Mermaid)
     *   Statistical analysis plots (Matplotlib)
 
-## 🏗️ System Architecture & Workflows
+## 📊 Visualizations and Analysis
 
-### 🔺 The Triangle of Quantum Security
-This unified architecture shows how QRNG, PQC, and QKD function together to provide comprehensive security.
+### 1. Unified Architecture
 
-```mermaid
-flowchart TD
-    A["🔮 QRNG<br/>Quantum Random<br/>Number Generator<br/><br/>Generate truly random key"] --> B["🛡️ PQC<br/>Post-Quantum<br/>Cryptography<br/><br/>Encrypt key using<br/>lattice-based crypto"]
-    B --> C["📡 QKD<br/>Quantum Key<br/>Distribution<br/><br/>Transmit encrypted key<br/>via quantum channel"]
-    C --> D["🔐 SECURE<br/>COMMUNICATION<br/><br/>Defense in Depth<br/>Future-Proof Cryptography"]
-    style A fill:#e1f5fe,stroke:#01579b,stroke-width:3px,color:#000
-    style B fill:#e8f5e9,stroke:#1b5e20,stroke-width:3px,color:#000
-    style C fill:#fff3e0,stroke:#e65100,stroke-width:3px,color:#000
-    style D fill:#ffebee,stroke:#c62828,stroke-width:3px,color:#000
-```
+![Triangle of Quantum Security](./images/triangle_quantum_security.png)
+**Analysis**: The "Triangle" architecture combines three layers of defense.
+*   **QRNG** is the foundation, providing the entropy (randomness) needed for strong keys.
+*   **PQC** provides the mathematical algorithmic layer, protecting data even if intercepted and stored for future quantum decryption ("harvest now, decrypt later").
+*   **QKD** adds the physical layer security, ensuring that any attempt to eavesdrop on the key exchange is detected by the laws of quantum mechanics (No-Cloning Theorem).
 
-### 🔮 1. Quantum Random Number Generator (QRNG)
+### 2. Quantum Random Number Generator (QRNG)
 The process of generating true randomness using quantum superposition.
 
 ```mermaid
@@ -59,10 +49,14 @@ graph TD
     C:::qkdStyle
     D:::secureStyle
 ```
+![QRNG Circuit](./images/qrng_circuit.png)
+**Circuit Logic**: The circuit utilizes 8 qubits initialized to |0⟩. A Hadamard gate (H) is applied to each, creating a superposition state (|0⟩ + |1⟩)/√2. Measurement collapses this state to a purely random bit (0 or 1).
+**Statistical Analysis**:
+![QRNG Analysis](./images/qrng_analysis.png)
+The distribution of generated numbers (0-255) typically shows a uniform distribution, confirming high entropy compared to pseudo-random generators which can exhibit patterns.
 
-### 🛡️ 2. Post-Quantum Cryptography (PQC)
+### 3. Post-Quantum Cryptography (PQC) Security
 The Key Encapsulation Mechanism (KEM) used to secure keys against quantum computers.
-
 ```mermaid
 sequenceDiagram
     participant Alice
@@ -74,8 +68,10 @@ sequenceDiagram
     Note over Alice: Decapsulate ct using sk<br/>Recover: ss
     Note over Alice,Bob: Shared secret<br/>established!
 ```
+![PQC Security Analysis](./images/pqc_security_analysis.png)
+**Performance**: The Kyber-like Lattice KEM demonstrates that while key sizes are larger than traditional RSA/ECC, the encapsulation and decapsulation times remain efficient for practical use. The security relies on the "Module Learning With Errors" (M-LWE) problem, which is believed to be hard even for quantum computers.
 
-### 📡 3. Quantum Key Distribution (QKD)
+### 4. Quantum Key Distribution (QKD)
 The BB84 protocol for detecting eavesdroppers during key transmission.
 
 ```mermaid
@@ -92,28 +88,6 @@ sequenceDiagram
     Note over Alice,Bob: 7. Discard Mismatches (Sifting)
     Note over Alice,Bob: 8. Check Error Rate<br/>If < Threshold -> Secure Key!
 ```
-
-## 📊 Visualizations and Analysis
-
-### 1. Unified Architecture
-![Triangle of Quantum Security](./images/triangle_quantum_security.png)
-**Analysis**: The "Triangle" architecture combines three layers of defense.
-*   **QRNG** is the foundation, providing the entropy (randomness) needed for strong keys.
-*   **PQC** provides the mathematical algorithmic layer, protecting data even if intercepted and stored for future quantum decryption ("harvest now, decrypt later").
-*   **QKD** adds the physical layer security, ensuring that any attempt to eavesdrop on the key exchange is detected by the laws of quantum mechanics (No-Cloning Theorem).
-
-### 2. Quantum Random Number Generator (QRNG)
-![QRNG Circuit](./images/qrng_circuit.png)
-**Circuit Logic**: The circuit utilizes 8 qubits initialized to |0⟩. A Hadamard gate (H) is applied to each, creating a superposition state (|0⟩ + |1⟩)/√2. Measurement collapses this state to a purely random bit (0 or 1).
-**Statistical Analysis**:
-![QRNG Analysis](./images/qrng_analysis.png)
-The distribution of generated numbers (0-255) typically shows a uniform distribution, confirming high entropy compared to pseudo-random generators which can exhibit patterns.
-
-### 3. Post-Quantum Cryptography (PQC) Security
-![PQC Security Analysis](./images/pqc_security_analysis.png)
-**Performance**: The Kyber-like Lattice KEM demonstrates that while key sizes are larger than traditional RSA/ECC, the encapsulation and decapsulation times remain efficient for practical use. The security relies on the "Module Learning With Errors" (M-LWE) problem, which is believed to be hard even for quantum computers.
-
-### 4. Quantum Key Distribution (QKD)
 ![QKD Security](./images/qkd_security.png)
 **BB84 Protocol**: The visualization traces the flow of qubits between Alice and Bob.
 *   **Eavesdropping Detection**: If an eavesdropper (Eve) intercepts the qubits, the error rate in the final key rises significantly (theoretically 25% for simple attacks).
