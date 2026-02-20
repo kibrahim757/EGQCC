@@ -40,7 +40,8 @@ Successfully transmit a key while measuring the exact QBER threshold at which Al
 
 ### Research Component:
 
-Compare the key and signature sizes of the four finalized NIST standards: ML-KEM (FIPS 203), ML-DSA (FIPS 204), SLH-DSA (FIPS 205), and the new FN-DSA (FIPS 206).
+Compare the key and signature sizes of the four finalized NIST standards: ML-KEM (FIPS 203), ML-DSA (FIPS 204), SLH-DSA (FIPS 205), and the new FN-DSA (FIPS 206).And make a comparison between any classical security algorithm and a PQC algorithm.
+And make another different choice of algorithm than the FIPS and talk about it.
 
 ### Coding Component:
 
