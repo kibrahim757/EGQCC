@@ -16,24 +16,6 @@ Visualize how quantum period-finding can find factors exponentially faster than 
 
 ---
 
-# Module 3: Quantum Communication (QC)
-
-## Task: "Securing Quantum Channel"
-
-### Research Component:
-
-Analyze the BB84 protocol and the role of the Quantum Bit Error Rate (QBER) in detecting eavesdroppers. Research how Quantum Temporal Authentication (QTA) prevents a "Man-in-the-Middle" attack by verifying arrival times at the nanosecond scale.
-
-### Coding/Simulation Component:
-
-Using QuNetSim or NetSquid, build a simulation of a 3-node network (Alice, Bob, and Eve).
-
-### Goal:
-
-Successfully transmit a key while measuring the exact QBER threshold at which Alice and Bob must abort the session due to Eve's interference.
-
----
-
 # Module 2: Post-Quantum Cryptography (PQC)
 
 ## Task: "FIPS 203–206 Implementation"
@@ -50,6 +32,24 @@ Use the liboqs (Open Quantum Safe) library in C or Python to perform a hybrid ke
 ### Goal:
 
 Implement a script that combines a classical algorithm (like X25519) with a PQC algorithm (ML-KEM-768) and measure the performance latency compared to a purely classical exchange.
+
+---
+
+# Module 3: Quantum Communication (QC)
+
+## Task: "Securing Quantum Channel"
+
+### Research Component:
+
+Analyze the BB84 protocol and the role of the Quantum Bit Error Rate (QBER) in detecting eavesdroppers. Research how Quantum Temporal Authentication (QTA) prevents a "Man-in-the-Middle" attack by verifying arrival times at the nanosecond scale.
+
+### Coding/Simulation Component:
+
+Using QuNetSim or NetSquid, build a simulation of a 3-node network (Alice, Bob, and Eve).
+
+### Goal:
+
+Successfully transmit a key while measuring the exact QBER threshold at which Alice and Bob must abort the session due to Eve's interference.
 
 ---
 
