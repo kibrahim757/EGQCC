@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Security Readiness Index (QSRI) Assessment</title>
+    <style>
+        :root {
+            --primary-dark: #0F0F42;
+            --primary-darker: #0A0A2E;
+            --accent-blue: #00BFFF;
+            --accent-light: #00E5FF;
+            --accent-gold: #FFB700;
+            --accent-orange: #FFA500;
+            --white: #FFFFFF;
+            --gray-light: #F5F7FA;
+            --gray-medium: #E1E5EB;
+            --gray-dark: #6B7280;
+            --success: #00E5FF;
+            --warning: #FFB700;
+            --danger: #FF6B6B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--primary-dark);
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, var(--accent-gold), var(--accent-gold)),
+                radial-gradient(2px 2px at 60px 70px, var(--accent-gold), var(--accent-gold)),
+                radial-gradient(2px 2px at 50px 50px, var(--accent-light), var(--accent-light)),
+                radial-gradient(2px 2px at 130px 80px, var(--accent-gold), var(--accent-gold)),
+                radial-gradient(2px 2px at 90px 10px, var(--accent-light), var(--accent-light)),
+                radial-gradient(2px 2px at 30px 80px, var(--accent-gold), var(--accent-gold)),
+                radial-gradient(2px 2px at 130px 130px, var(--accent-light), var(--accent-light)),
+                linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue) 25%, transparent 25%, transparent 50%, var(--accent-blue) 50%, var(--accent-blue) 75%, transparent 75%, transparent) 0 0 / 200px 200px,
+                linear-gradient(45deg, var(--accent-blue) 0%, var(--accent-blue) 25%, transparent 25%, transparent 50%, var(--accent-blue) 50%, var(--accent-blue) 75%, transparent 75%, transparent) 100px 100px / 200px 200px;
+            background-size: 400% 400%, 400% 400%, 400% 400%, 400% 400%, 400% 400%, 400% 400%, 400% 400%, 300px 300px, 300px 300px;
+            background-repeat: repeat;
+            background-attachment: fixed;
+            background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+            min-height: 100vh;
+            color: var(--primary-dark);
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: linear-gradient(135deg, transparent 0%, transparent 40%, var(--accent-light) 45%, var(--accent-light) 55%, transparent 60%, transparent 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -10%;
+            right: 5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-light) 0%, var(--accent-light) 1px, transparent 1px);
+            background-size: 15px 15px;
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-darker) 100%);
+            color: var(--white);
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 20px rgba(15, 15, 66, 0.5);
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-title h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .header-title p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .purpose-section {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 25px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(15, 15, 66, 0.15);
+        }
+
+        .purpose-section h2 {
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--gray-medium);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .about-card {
+            background: var(--gray-light);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid var(--accent-blue);
+            transition: all 0.2s;
+        }
+
+        .about-card:hover {
+            box-shadow: 0 4px 12px rgba(75, 146, 204, 0.15);
+        }
+
+        .about-card h3 {
+            color: var(--primary-dark);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .about-card h3::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+        }
+
+        .about-card p {
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .radar-container {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(23, 23, 72, 0.08);
+        }
+
+        .radar-container h3 {
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .radar-chart-wrapper {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        .radar-chart {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+        }
+
+        .radar-legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            font-size: 0.7rem;
+        }
+
+        .radar-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .radar-legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+        }
+
+        .assessment-section {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 25px 30px;
+            box-shadow: 0 4px 15px rgba(23, 23, 72, 0.08);
+        }
+
+        .section-title {
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--gray-medium);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title .icon {
+            width: 32px;
+            height: 32px;
+            background: var(--accent-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .assessment-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .assessment-table th {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .assessment-table th:first-child {
+            border-radius: 10px 0 0 0;
+        }
+
+        .assessment-table th:last-child {
+            border-radius: 0 10px 0 0;
+        }
+
+        .assessment-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--gray-medium);
+            vertical-align: middle;
+        }
+
+        .assessment-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .assessment-table tr:nth-child(even) {
+            background: var(--gray-light);
+        }
+
+        .assessment-table tr:hover {
+            background: rgba(75, 146, 204, 0.08);
+        }
+
+        .dimension-name {
+            font-weight: 600;
+            color: var(--primary-dark);
+            max-width: 200px;
+        }
+
+        .weight-badge {
+            background: var(--accent-blue);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .maturity-select {
+            padding: 8px 12px;
+            border: 2px solid var(--gray-medium);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: var(--white);
+            color: var(--primary-dark);
+            cursor: pointer;
+            transition: all 0.2s;
+            min-width: 150px;
+        }
+
+        .maturity-select:hover {
+            border-color: var(--accent-blue);
+        }
+
+        .maturity-select:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(75, 146, 204, 0.2);
+        }
+
+        .score-value {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .note-text {
+            font-size: 0.8rem;
+            color: var(--gray-dark);
+            max-width: 180px;
+        }
+
+        .total-row {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-darker) 100%) !important;
+        }
+
+        .total-row td {
+            color: var(--white);
+            font-weight: 600;
+            border-bottom: none;
+        }
+
+        .total-row .total-score {
+            font-size: 1.5rem;
+            color: var(--accent-light);
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .score-card {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-darker) 100%);
+            border-radius: 16px;
+            padding: 25px;
+            color: var(--white);
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(23, 23, 72, 0.3);
+        }
+
+        .score-card h3 {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .score-card .score-display {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .score-card .score-max {
+            font-size: 1.5rem;
+            opacity: 0.6;
+        }
+
+        .readiness-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-top: 15px;
+        }
+
+        .badge-unprepared {
+            background: rgba(239, 68, 68, 0.2);
+            color: #FF6B6B;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .badge-early {
+            background: rgba(245, 158, 11, 0.2);
+            color: #FFB84D;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .badge-progressing {
+            background: rgba(75, 146, 204, 0.2);
+            color: var(--accent-light);
+            border: 1px solid rgba(75, 146, 204, 0.3);
+        }
+
+        .badge-mature {
+            background: rgba(16, 185, 129, 0.2);
+            color: #6EE7B7;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(23, 23, 72, 0.08);
+        }
+
+        .info-card h3 {
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .maturity-levels {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .level-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: var(--gray-light);
+            transition: all 0.2s;
+        }
+
+        .level-item:hover {
+            background: rgba(75, 146, 204, 0.15);
+        }
+
+        .level-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .level-0 { background: #FFCDD2; color: #C62828; }
+        .level-1 { background: #FFE0B2; color: #E65100; }
+        .level-2 { background: #FFF3E0; color: #F57C00; }
+        .level-3 { background: #E3F2FD; color: #1565C0; }
+        .level-4 { background: #E8F5E9; color: #2E7D32; }
+        .level-5 { background: var(--accent-blue); color: var(--white); }
+
+        .level-info {
+            flex: 1;
+        }
+
+        .level-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--primary-dark);
+        }
+
+        .level-desc {
+            font-size: 0.75rem;
+            color: var(--gray-dark);
+            margin-top: 2px;
+        }
+
+        .scoring-guide {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .guide-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        .guide-item.unprepared {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--danger);
+        }
+
+        .guide-item.early {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--warning);
+        }
+
+        .guide-item.progressing {
+            background: rgba(75, 146, 204, 0.1);
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        .guide-item.mature {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+        }
+
+        .guide-range {
+            font-weight: 700;
+            min-width: 60px;
+        }
+
+        .guide-level {
+            font-weight: 600;
+            min-width: 80px;
+        }
+
+        .guide-interpretation {
+            color: var(--gray-dark);
+            font-size: 0.8rem;
+        }
+
+        .progress-bar-container {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            height: 12px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease, background 0.5s ease;
+        }
+
+        .progress-unprepared { background: linear-gradient(90deg, #EF4444, #F87171); }
+        .progress-early { background: linear-gradient(90deg, #FFB700, #FFC700); }
+        .progress-progressing { background: linear-gradient(90deg, var(--accent-blue), var(--accent-light)); }
+        .progress-mature { background: linear-gradient(90deg, #00E5FF, #00BFFF); }
+
+        .chart-container {
+            margin-top: 25px;
+            padding: 20px;
+            background: var(--gray-light);
+            border-radius: 12px;
+        }
+
+        .chart-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bar-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bar-label {
+            min-width: 140px;
+            font-size: 0.75rem;
+            color: var(--gray-dark);
+            text-align: right;
+        }
+
+        .bar-track {
+            flex: 1;
+            height: 20px;
+            background: var(--gray-medium);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .bar-value {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--primary-dark);
+        }
+
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .score-card {
+                flex: 1;
+                min-width: 250px;
+            }
+
+            .info-card {
+                flex: 1;
+                min-width: 280px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 20px;
+            }
+
+            .header-left {
+                flex-direction: column;
+            }
+
+            .header-title h1 {
+                font-size: 1.4rem;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            .assessment-table {
+                font-size: 0.85rem;
+            }
+
+            .assessment-table th,
+            .assessment-table td {
+                padding: 10px 8px;
+            }
+
+            .note-text {
+                display: none;
+            }
+
+            .sidebar {
+                flex-direction: column;
+            }
+        }
+
+        .reset-btn {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 15px;
+        }
+
+        .reset-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-darker) 100%);
+            color: var(--white);
+            padding: 20px 40px;
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: 0 -4px 20px rgba(15, 15, 66, 0.5);
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        .footer-link {
+            color: var(--accent-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                padding: 15px 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .header {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .header-right {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <div class="header-title">
+                <h1>Quantum Security Readiness Index</h1>
+                <p>Comprehensive Assessment Tool</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="purpose-section">
+            <h2>About QSRI</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Purpose</h3>
+                    <p>Quantify how well an organization is prepared for quantum threats. Provide standardized benchmarking for internal assessment, industry comparison, and regulatory reporting.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Alignment</h3>
+                    <p>Supports risk management, migration roadmaps, and investment prioritization. Aligns with NIST PQC, ETSI, and ENISA guidance.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Methodology</h3>
+                    <p>Eight critical dimensions weighted by strategic importance. Maturity levels 0-5 assessed per dimension with weighted scoring 0-100.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="main-content">
+            <section class="assessment-section">
+                <h2 class="section-title">
+                    <span class="icon">📊</span>
+                    QSRI Assessment Dimensions
+                </h2>
+                <table class="assessment-table">
+                    <thead>
+                        <tr>
+                            <th>Dimension</th>
+                            <th>Weight</th>
+                            <th>Maturity Level</th>
+                            <th>Score</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="assessmentBody">
+                        <!-- Rows will be generated by JavaScript -->
+                    </tbody>
+                </table>
+
+                <div class="chart-container">
+                    <div class="chart-title">Score Distribution by Dimension</div>
+                    <div class="bar-chart" id="barChart">
+                        <!-- Bars will be generated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <aside class="sidebar">
+                <div class="radar-container">
+                    <h3>Quantum Maturity Radar</h3>
+                    <div class="radar-chart-wrapper">
+                        <svg id="radarChart" class="radar-chart" viewBox="0 0 300 300"></svg>
+                    </div>
+                </div>
+
+                <div class="score-card">
+                    <h3>Total QSRI Score</h3>
+                    <div class="score-display">
+                        <span id="totalScore">59</span><span class="score-max">/100</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar progress-progressing" id="progressBar" style="width: 59%"></div>
+                    </div>
+                    <span class="readiness-badge badge-progressing" id="readinessBadge">Progressing</span>
+                    <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.85;" id="interpretation">
+                        Partial readiness with some implementation
+                    </p>
+                    <button class="reset-btn" onclick="resetAssessment()">Reset Assessment</button>
+                </div>
+
+                <div class="info-card">
+                    <h3>📈 Maturity Levels</h3>
+                    <div class="maturity-levels">
+                        <div class="level-item">
+                            <span class="level-num level-0">0</span>
+                            <div class="level-info">
+                                <div class="level-name">Unaware</div>
+                                <div class="level-desc">No awareness; no action taken</div>
+                            </div>
+                        </div>
+                        <div class="level-item">
+                            <span class="level-num level-1">1</span>
+                            <div class="level-info">
+                                <div class="level-name">Aware</div>
+                                <div class="level-desc">Basic awareness; no formal program</div>
+                            </div>
+                        </div>
+                        <div class="level-item">
+                            <span class="level-num level-2">2</span>
+                            <div class="level-info">
+                                <div class="level-name">Initiating</div>
+                                <div class="level-desc">Initial assessments in progress</div>
+                            </div>
+                        </div>
+                        <div class="level-item">
+                            <span class="level-num level-3">3</span>
+                            <div class="level-info">
+                                <div class="level-name">Planning</div>
+                                <div class="level-desc">Roadmaps and testbeds defined</div>
+                            </div>
+                        </div>
+                        <div class="level-item">
+                            <span class="level-num level-4">4</span>
+                            <div class="level-info">
+                                <div class="level-name">Migrating</div>
+                                <div class="level-desc">Pilot PQC deployments active</div>
+                            </div>
+                        </div>
+                        <div class="level-item">
+                            <span class="level-num level-5">5</span>
+                            <div class="level-info">
+                                <div class="level-name">Quantum-Safe Ready</div>
+                                <div class="level-desc">Full PQC adoption achieved</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3>🎯 Scoring Guide</h3>
+                    <div class="scoring-guide">
+                        <div class="guide-item unprepared">
+                            <span class="guide-range">0–25</span>
+                            <span class="guide-level">Unprepared</span>
+                        </div>
+                        <div class="guide-item early">
+                            <span class="guide-range">26–50</span>
+                            <span class="guide-level">Early-stage</span>
+                        </div>
+                        <div class="guide-item progressing">
+                            <span class="guide-range">51–75</span>
+                            <span class="guide-level">Progressing</span>
+                        </div>
+                        <div class="guide-item mature">
+                            <span class="guide-range">76–100</span>
+                            <span class="guide-level">Mature</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        // Assessment data from Excel
+        const assessmentData = [
+            {
+                id: 1,
+                dimension: "Cryptographic Inventory & Discovery",
+                weight: 0.15,
+                maturity: 3,
+                note: "Visibility over where cryptography is used in the organization."
+            },
+            {
+                id: 2,
+                dimension: "Risk Assessment & Impact Analysis",
+                weight: 0.10,
+                maturity: 2,
+                note: "Understanding which assets and data are vulnerable to quantum threats."
+            },
+            {
+                id: 3,
+                dimension: "Policy & Governance",
+                weight: 0.10,
+                maturity: 2,
+                note: "Leadership commitment, PQC strategy, and governance model."
+            },
+            {
+                id: 4,
+                dimension: "Technology & Crypto Agility",
+                weight: 0.15,
+                maturity: 4,
+                note: "Ability to upgrade or swap cryptography with minimal disruption."
+            },
+            {
+                id: 5,
+                dimension: "Migration Planning & Execution",
+                weight: 0.20,
+                maturity: 2,
+                note: "Defined strategy, timeline, and pilot migrations."
+            },
+            {
+                id: 6,
+                dimension: "Vendor & Supply Chain Readiness",
+                weight: 0.10,
+                maturity: 4,
+                note: "Ensuring partners and products support PQC transition."
+            },
+            {
+                id: 7,
+                dimension: "Regulatory & Compliance Alignment",
+                weight: 0.10,
+                maturity: 2,
+                note: "Alignment with national and international standards."
+            },
+            {
+                id: 8,
+                dimension: "Awareness & Workforce Training",
+                weight: 0.10,
+                maturity: 5,
+                note: "Internal capacity building and training on quantum risks."
+            }
+        ];
+
+        const maturityLevels = [
+            { level: 0, name: "Unaware", desc: "No awareness of quantum threats; no action taken." },
+            { level: 1, name: "Aware", desc: "Basic awareness; no formal program or inventory." },
+            { level: 2, name: "Initiating", desc: "Initial assessments or inventories are in progress." },
+            { level: 3, name: "Planning", desc: "Roadmaps, governance, and testbeds defined." },
+            { level: 4, name: "Migrating", desc: "Pilot PQC/hybrid crypto deployments in production areas." },
+            { level: 5, name: "Quantum-Safe Ready", desc: "Full cryptographic agility, PQC adoption, and policy integration." }
+        ];
+
+        const scoringGuide = [
+            { range: "0–25", level: "Unprepared", interpretation: "Critical risk; no quantum defense strategy.", class: "unprepared" },
+            { range: "26–50", level: "Early-stage", interpretation: "Awareness stage; significant work required.", class: "early" },
+            { range: "51–75", level: "Progressing", interpretation: "Partial readiness with some implementation.", class: "progressing" },
+            { range: "76–100", level: "Mature", interpretation: "Quantum-safe ready with strong governance.", class: "mature" }
+        ];
+
+        // Calculate score for a single dimension
+        function calculateScore(weight, maturity) {
+            return Math.round(weight * maturity * 20); // weight * maturity * 20 = score out of max 100
+        }
+
+        // Calculate total score
+        function calculateTotalScore() {
+            return assessmentData.reduce((total, item) => {
+                return total + calculateScore(item.weight, item.maturity);
+            }, 0);
+        }
+
+        // Get readiness level based on score
+        function getReadinessLevel(score) {
+            if (score <= 25) return scoringGuide[0];
+            if (score <= 50) return scoringGuide[1];
+            if (score <= 75) return scoringGuide[2];
+            return scoringGuide[3];
+        }
+
+        // Generate assessment table rows
+        function generateAssessmentTable() {
+            const tbody = document.getElementById('assessmentBody');
+            
+            assessmentData.forEach(item => {
+                const score = calculateScore(item.weight, item.maturity);
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="dimension-name">${item.dimension}</td>
+                    <td><span class="weight-badge">${(item.weight * 100).toFixed(0)}%</span></td>
+                    <td>
+                        <select class="maturity-select" data-id="${item.id}" onchange="updateMaturity(${item.id}, this.value)">
+                            ${maturityLevels.map(ml => `
+                                <option value="${ml.level}" ${ml.level === item.maturity ? 'selected' : ''}>
+                                    ${ml.level} – ${ml.name}
+                                </option>
+                            `).join('')}
+                        </select>
+                    </td>
+                    <td><span class="score-value" id="score-${item.id}">${score}</span></td>
+                    <td class="note-text">${item.note}</td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            // Add total row
+            const totalRow = document.createElement('tr');
+            totalRow.className = 'total-row';
+            totalRow.innerHTML = `
+                <td colspan="3" style="font-size: 1.1rem;">Total QSRI Score</td>
+                <td><span class="total-score" id="totalScoreCell">${calculateTotalScore()}</span></td>
+                <td></td>
+            `;
+            tbody.appendChild(totalRow);
+        }
+
+        // Generate bar chart
+        function generateBarChart() {
+            const container = document.getElementById('barChart');
+            container.innerHTML = '';
+            
+            const maxScore = 20; // Maximum possible score per dimension (weight * 5 * 20)
+            
+            assessmentData.forEach(item => {
+                const score = calculateScore(item.weight, item.maturity);
+                const percentage = (score / (item.weight * 100)) * 100;
+                
+                const barItem = document.createElement('div');
+                barItem.className = 'bar-item';
+                barItem.innerHTML = `
+                    <span class="bar-label">${item.dimension.length > 20 ? item.dimension.substring(0, 20) + '...' : item.dimension}</span>
+                    <div class="bar-track">
+                        <div class="bar-fill" id="bar-${item.id}" style="width: ${percentage}%; background: ${getBarColor(item.maturity)}">
+                            ${percentage > 20 ? score : ''}
+                        </div>
+                    </div>
+                    <span class="bar-value" id="bar-value-${item.id}">${score}</span>
+                `;
+                container.appendChild(barItem);
+            });
+        }
+
+        // Get bar color based on maturity level
+        function getBarColor(maturity) {
+            const colors = [
+                'linear-gradient(90deg, #EF4444, #F87171)',
+                'linear-gradient(90deg, #FFB700, #FFC700)',
+                'linear-gradient(90deg, #FFB700, #FFC700)',
+                'linear-gradient(90deg, #00BFFF, #00E5FF)',
+                'linear-gradient(90deg, #00E5FF, #00BFFF)',
+                'linear-gradient(90deg, #00E5FF, #00BFFF)'
+            ];
+            return colors[maturity];
+        }
+
+        // Generate radar chart
+        function generateRadarChart() {
+            const svg = document.getElementById('radarChart');
+            const centerX = 150;
+            const centerY = 150;
+            const maxRadius = 100;
+            const levels = 5;
+            const numPoints = assessmentData.length;
+            const angleStep = (2 * Math.PI) / numPoints;
+            
+            // Short names for labels
+            const shortNames = ['Inventory', 'Risk', 'Policy', 'Agility', 'Migration', 'Supply Chain', 'Compliance', 'Training'];
+            const dimensionColors = ['#00BFFF', '#00C8FF', '#00D1FF', '#00DAFF', '#00E5FF', '#1AECFF', '#33F3FF', '#4DFAFF'];
+            
+            let svgContent = '';
+            
+            // Draw background circles
+            for (let i = levels; i >= 1; i--) {
+                const radius = (maxRadius / levels) * i;
+                svgContent += `<circle cx="${centerX}" cy="${centerY}" r="${radius}" fill="none" stroke="#E1E5EB" stroke-width="1"/>`;
+            }
+            
+            // Draw axis lines and category labels
+            assessmentData.forEach((item, index) => {
+                const angle = index * angleStep - Math.PI / 2;
+                const x = centerX + maxRadius * Math.cos(angle);
+                const y = centerY + maxRadius * Math.sin(angle);
+                
+                // Axis line
+                svgContent += `<line x1="${centerX}" y1="${centerY}" x2="${x}" y2="${y}" stroke="#E1E5EB" stroke-width="1"/>`;
+                
+                // Category label (positioned outside the chart)
+                const labelRadius = maxRadius + 25;
+                const labelX = centerX + labelRadius * Math.cos(angle);
+                const labelY = centerY + labelRadius * Math.sin(angle);
+                
+                // Adjust text anchor based on position
+                let textAnchor = 'middle';
+                if (Math.cos(angle) > 0.1) textAnchor = 'start';
+                else if (Math.cos(angle) < -0.1) textAnchor = 'end';
+                
+                svgContent += `<text x="${labelX}" y="${labelY}" text-anchor="${textAnchor}" dominant-baseline="middle" fill="#171748" font-size="9" font-weight="600">${shortNames[index]}</text>`;
+                svgContent += `<text x="${labelX}" y="${labelY + 11}" text-anchor="${textAnchor}" dominant-baseline="middle" fill="#6B7280" font-size="8">(${item.maturity}/5)</text>`;
+            });
+            
+            // Draw data polygon
+            let points = '';
+            assessmentData.forEach((item, index) => {
+                const angle = index * angleStep - Math.PI / 2;
+                const radius = (maxRadius / 5) * item.maturity;
+                const x = centerX + radius * Math.cos(angle);
+                const y = centerY + radius * Math.sin(angle);
+                points += `${x},${y} `;
+            });
+            
+            // Data area with gradient
+            svgContent += `<defs>
+                <linearGradient id="radarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00BFFF;stop-opacity:0.7"/>
+                    <stop offset="100%" style="stop-color:#00E5FF;stop-opacity:0.5"/>
+                </linearGradient>
+            </defs>`;
+            svgContent += `<polygon points="${points.trim()}" fill="url(#radarGradient)" stroke="#00BFFF" stroke-width="2"/>`;
+            
+            // Draw data points
+            assessmentData.forEach((item, index) => {
+                const angle = index * angleStep - Math.PI / 2;
+                const radius = (maxRadius / 5) * item.maturity;
+                const x = centerX + radius * Math.cos(angle);
+                const y = centerY + radius * Math.sin(angle);
+                svgContent += `<circle cx="${x}" cy="${y}" r="5" fill="#00BFFF" stroke="#fff" stroke-width="2"/>`;
+            });
+            
+            svg.innerHTML = svgContent;
+        }
+
+        // Update maturity level
+        function updateMaturity(id, value) {
+            const item = assessmentData.find(d => d.id === id);
+            if (item) {
+                item.maturity = parseInt(value);
+                const score = calculateScore(item.weight, item.maturity);
+                
+                // Update score display
+                document.getElementById(`score-${id}`).textContent = score;
+                
+                // Update bar chart
+                const percentage = (score / (item.weight * 100)) * 100;
+                const bar = document.getElementById(`bar-${id}`);
+                bar.style.width = `${percentage}%`;
+                bar.style.background = getBarColor(item.maturity);
+                bar.textContent = percentage > 20 ? score : '';
+                document.getElementById(`bar-value-${id}`).textContent = score;
+                
+                // Update total score
+                updateTotalScore();
+                
+                // Update radar chart
+                generateRadarChart();
+            }
+        }
+
+        // Update total score display
+        function updateTotalScore() {
+            const totalScore = calculateTotalScore();
+            document.getElementById('totalScore').textContent = totalScore;
+            document.getElementById('totalScoreCell').textContent = totalScore;
+            
+            // Update progress bar
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = `${totalScore}%`;
+            
+            // Update readiness badge and interpretation
+            const readiness = getReadinessLevel(totalScore);
+            const badge = document.getElementById('readinessBadge');
+            badge.textContent = readiness.level;
+            badge.className = `readiness-badge badge-${readiness.class}`;
+            
+            document.getElementById('interpretation').textContent = readiness.interpretation;
+            
+            // Update progress bar color
+            progressBar.className = `progress-bar progress-${readiness.class}`;
+        }
+
+        // Reset assessment to default values
+        function resetAssessment() {
+            const defaults = [3, 2, 2, 4, 2, 4, 2, 5];
+            assessmentData.forEach((item, index) => {
+                item.maturity = defaults[index];
+                const select = document.querySelector(`select[data-id="${item.id}"]`);
+                if (select) {
+                    select.value = item.maturity;
+                }
+                updateMaturity(item.id, item.maturity);
+            });
+            generateRadarChart();
+            updateTotalScore();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            generateAssessmentTable();
+            generateBarChart();
+            generateRadarChart();
+            updateTotalScore();
+        });
+
+    </script>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <span class="footer-text">Powered by</span>
+            <a href="https://solutions.fixed.global" target="_blank" class="footer-link">solutions.fixed.global</a>
+        </div>
+    </footer>
+</body>
+</html>
